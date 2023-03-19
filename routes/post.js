@@ -7,7 +7,8 @@ const requireSignIn = require("../Middleware/requireSignIn");
 const Post = mongoose.model("Post");
 
 router.get("/allpost", requireSignIn, (req, res) => {
-  Post.find({ postedby: { $in: req.user.following } })
+  //Post.find({ postedby: { $in: req.user.following } })
+  Post.find({})
     .populate("postedby")
     .populate("comments.postedby")
     .sort({ _id: -1 })
